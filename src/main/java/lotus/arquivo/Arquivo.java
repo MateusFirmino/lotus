@@ -17,7 +17,7 @@ public class Arquivo {
             }
 
         } catch (FileNotFoundException e) {
-            System.err.println("arquivo não encontrado " + e.getMessage());
+            System.err.println("Arquivo não encontrado " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Não foi possível ler o arquivo" + e.getMessage());
         }

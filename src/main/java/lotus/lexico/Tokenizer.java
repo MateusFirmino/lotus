@@ -1,11 +1,8 @@
 package lotus.lexico;
 
-import lotus.arquivo.Arquivo;
 import lotus.flags.Flag;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Tokenizer {
 
@@ -15,7 +12,24 @@ public class Tokenizer {
     List<String> line = new ArrayList<>();
     List<TokenBox> listOfTokens = new ArrayList<>();
 
+    public final static Map<String, String> palavraChave;
+
+    static {
+        palavraChave = new HashMap<>();
+        palavraChave.put("lt_begin", "init_program");
+        palavraChave.put("lt_exit", "close_program");
+        palavraChave.put("lt_if", "if");
+        palavraChave.put("lt_else", "else");
+        palavraChave.put("lt_endif", "end_if");
+        palavraChave.put("lt_while", "loop");
+        palavraChave.put("lt_endwhile", "endloop");
+        palavraChave.put("lt_show", "write");
+        palavraChave.put("lt_read", "read");
+        palavraChave.put("lt_create", "var");
+    }
+
     public static boolean isKeyword(String s) {
+
 
         switch (s) {
             case "lt_begin":
@@ -63,9 +77,9 @@ public class Tokenizer {
         return s.chars().allMatch(Character::isDigit);
     }
 
-    public  List<TokenBox> splitTk(List<String> codigo) {
+    public List<TokenBox> splitTk(List<String> codigo) {
 
-        String splitter = "[+*\\-<>/=\\s)(\";]"; //criterios de divisao
+        String splitter = "[+*\\-<>/=\\s)(\";]"; //criterios de divisao REGEX
 
         String regex = "((?<=" + splitter + ")|"  /*lookahead*/ + "(?=" + splitter + "))"; /*lookbehind*/
 
@@ -83,11 +97,16 @@ public class Tokenizer {
 
                 if (lexeme.isBlank()) continue; // tratamento para espaços
 
-                if (isKeyword(lexeme) || isSymbol(lexeme)) { //add caso for um simbolo ou palavra chave
+                if (isKeyword(lexeme)) { //add caso for um simbolo ou palavra chave
+                    var terminal = palavraChave.get(lexeme);
+                    listOfTokens.add(new TokenBox(terminal, lexeme, lineCounter, columnCounter));
+
+                    columnCounter += lexeme.length();
+                } else if (isSymbol(lexeme)) {
                     listOfTokens.add(new TokenBox(lexeme, lexeme, lineCounter, columnCounter));
                     columnCounter += lexeme.length();
                 } else if (isId(lexeme)) { // add caso for um id
-                    listOfTokens.add(new TokenBox("id", lexeme, lineCounter, columnCounter));
+                    listOfTokens.add(new TokenBox("variavel", lexeme, lineCounter, columnCounter));
                     columnCounter += lexeme.length();
                 } else if (isNumber(lexeme)) { // add caso for um numeral
                     listOfTokens.add(new TokenBox("number", lexeme, lineCounter, columnCounter));
@@ -112,15 +131,15 @@ public class Tokenizer {
 
                 } else { // caso seja  um lexema que não se encaixa na gramatica
                     System.err.println("LEXICAL ERROR at [" + lineCounter + ", " + columnCounter + "] " +
-                            lexeme + " não foi reconhecido.");
+                            lexeme + " nao foi reconhecido.");
                     System.exit(-1);
                 }
             }
             lineCounter++;
             columnCounter = 1;
         }
-        listOfTokens.add(new TokenBox("$","$",lineCounter,columnCounter));
-        if (Flag.TOKENS.getStatus()){
+        listOfTokens.add(new TokenBox("$", "$", lineCounter, columnCounter));
+        if (Flag.TOKENS.getStatus()) {
             for (TokenBox listOfToken : listOfTokens) { //printa a lista de tokens
                 System.out.println(listOfToken.toString());
             }

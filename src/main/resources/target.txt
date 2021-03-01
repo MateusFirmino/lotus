@@ -1,0 +1,7 @@
+lt_begin
+
+
+
+	lt_show ("batata");
+
+lt_exit

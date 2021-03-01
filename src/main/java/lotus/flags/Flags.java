@@ -23,7 +23,7 @@ public class Flags {
         for (String arg: cmd) {
             if(arg.contains(".txt")) return arg;
         }
-        throw new IllegalArgumentException("Arquivo nao reconhecido");
+        throw new IllegalArgumentException("Arquivo não reconhecido");
     }
 
 }

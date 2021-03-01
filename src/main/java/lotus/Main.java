@@ -5,6 +5,7 @@ import lotus.flags.Flags;
 //import lotus.intermediario.Final;
 //import lotus.intermediario.Intermediario;
 import lotus.lexico.Tokenizer;
+import lotus.sintatico.Sintatico;
 //import lotus.semantico.Semantico;
 //import lotus.sintatico.Sintatico;
 
@@ -16,6 +17,10 @@ public class Main {
         new Flags().verificaTk(args);
         String path = new Flags().validatePath(args);
         var listaDeTokens = new Tokenizer().splitTk(new Arquivo().lerAquivo(path));
+        System.out.println("Analise léxica concluida");
+
+        new Sintatico(listaDeTokens).analiseSintatico();
+
 //        new Sintatico(listaDeTokens).analiseSintatico();
 //        var semantico = new Semantico(listaDeTokens);
 //        semantico.analise();
