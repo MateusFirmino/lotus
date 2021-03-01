@@ -1,0 +1,18 @@
+lt_begin
+	lt_create num;
+	lt_create fat;
+	lt_create resultado;
+	 
+	resultado = 1;
+	lt_show "escreva um numero";
+	lt_read num;
+
+	lt_while (fat < num)
+
+		fat = fat + 1;
+		resultado = result * fat;
+	lt_endwhile
+	
+	lt_show resultado;
+
+lt_exit

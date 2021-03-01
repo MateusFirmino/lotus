@@ -1,0 +1,125 @@
+#Options
+GenerateScanner = true
+GenerateParser = true
+Language = Java
+ScannerName = Lexico
+ParserName = Sintatico
+SemanticName = Semantico
+ScannerCaseSensitive = true
+ScannerTable = Full
+Input = Stream
+Parser = LL
+#RegularDefinitions
+whitespace : [\s\t\n]
+comment    : [\0-\41\43-\255]
+character  : [a-zA-Z]
+integer    : [0-9]
+string     : [\0-\9\11-\33\35-\91\93-\255]
+underline  : ["_"]
+#Tokens
+                        	: {whitespace}*
+                        	: / / [^\n]*
+variavel	              	: {character}({character} | {integer} )*
+keyword		      	: ({character} | {underline})*
+number         		: ({integer})+
+string_literal          	: \" ({string} | \\ \" | \\ {character})* \"
+
+init_program	= keyword : "lt_begin"
+close_program	= keyword : "lt_exit"
+
+if       	= keyword : "lt_if"
+else     	= keyword : "lt_else"
+endif		= keyword : "lt_endif"
+
+loop     	= keyword : "lt_while"
+endloop  	= keyword : "lt_endwhile"
+write    	= keyword : "lt_show"
+read    		= keyword : "lt_read"
+var      	= keyword : "lt_create"
+
+
+";"
+"="
+"+"
+"-"
+"*"
+"/"
+"<"
+">"
+")"
+"("
+
+#NonTerminals
+<lotus>
+<recursive_statement>
+<statement>
+<write>
+<read>
+<conditional>
+<if>
+<else>
+<loop>
+<while>
+<declaration>
+<assignment>
+<basic_expression>
+<basic_operator>
+<string_expression>
+<any_expression>
+<logical_expression>
+<id_or_number>
+<logical_operator>
+#Grammar
+<lotus>          ::= init_program <recursive_statement> close_program
+|                         î
+;
+<recursive_statement> ::= <statement> <recursive_statement>
+|                        î
+;
+<statement>           ::= <write>
+|                         <read>
+|                         <conditional>
+|                         <loop>
+|                         <declaration>
+|                         <assignment>
+;
+<write>               ::= write "("<any_expression>")" ";"
+;
+<read>                ::= read "("variavel")" ";"
+;
+<conditional>         ::= <if> <else> endif
+;
+<if>                  ::= if "("<logical_expression>")" <recursive_statement>
+;
+<else>                ::= else <recursive_statement>
+|                         î
+;
+<loop>                ::= <while> endloop
+;
+<while>               ::= loop "("<logical_expression>")" <recursive_statement>
+;
+<declaration>         ::= var variavel ";"
+;
+<assignment>          ::= variavel "=" <basic_expression> ";"
+;
+<basic_expression>    ::= variavel <basic_operator>
+|                         number <basic_operator>
+|                         "+" <basic_expression>
+|                         "-" <basic_expression>
+|                         "(" <basic_expression> ")" <basic_operator>
+;
+<basic_operator>      ::= "+" <basic_expression>
+|                         "-" <basic_expression>
+|                         "*" <basic_expression>
+|                         "/" <basic_expression>
+|                         î
+;
+<string_expression>   ::= string_literal
+;
+<id_or_number>           ::= variavel | number;
+<any_expression>        ::= <basic_expression>
+|                         <string_expression>
+;
+<logical_operator>       ::=  "<" | ">";
+<logical_expression>   ::=  <id_or_number> <logical_operator> <id_or_number>;
+
