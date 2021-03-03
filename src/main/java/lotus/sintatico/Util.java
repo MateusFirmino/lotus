@@ -41,25 +41,25 @@ public class Util {
         terminal.put("(", 24);
 
         naoTerminal = new HashMap<>(); // vertical
-        naoTerminal.put("lotus", 0);
-        naoTerminal.put("recursive_statement", 1);
-        naoTerminal.put("statement", 2);
-        naoTerminal.put("write", 3);
-        naoTerminal.put("read", 4);
-        naoTerminal.put("conditional", 5);
-        naoTerminal.put("if", 6);
-        naoTerminal.put("else", 7);
-        naoTerminal.put("loop", 8);
-        naoTerminal.put("while", 9);
-        naoTerminal.put("declaration", 10);
-        naoTerminal.put("assignment", 11);
-        naoTerminal.put("basic_expression", 12);
-        naoTerminal.put("basic_operator", 13);
-        naoTerminal.put("string_expression", 14);
-        naoTerminal.put("any_expression", 15);
-        naoTerminal.put("logical_expression", 16);
-        naoTerminal.put("id_or_number", 17);
-        naoTerminal.put("logical_operator", 18);
+        naoTerminal.put("LOTUS", 0);
+        naoTerminal.put("RECURSIVE_STATEMENT", 1);
+        naoTerminal.put("STATEMENT", 2);
+        naoTerminal.put("WRITE", 3);
+        naoTerminal.put("READ", 4);
+        naoTerminal.put("CONDITIONAL", 5);
+        naoTerminal.put("IF", 6);
+        naoTerminal.put("ELSE", 7);
+        naoTerminal.put("LOOP", 8);
+        naoTerminal.put("WHILE", 9);
+        naoTerminal.put("DECLARATION", 10);
+        naoTerminal.put("ASSIGNMENT", 11);
+        naoTerminal.put("BASIC_EXPRESSION", 12);
+        naoTerminal.put("BASIC_OPERATOR", 13);
+        naoTerminal.put("STRING_EXPRESSION", 14);
+        naoTerminal.put("ANY_EXPRESSION", 15);
+        naoTerminal.put("LOGICAL_EXPRESSION", 16);
+        naoTerminal.put("ID_OR_NUMBER", 17);
+        naoTerminal.put("LOGICAL_OPERATOR", 18);
 
 
     }
@@ -75,44 +75,44 @@ public class Util {
 
     public static List<List<String>> getRegrasProducao() {
         return asList(
-                asList("init_program", "recursive_statement", "close_program"),
+                asList("init_program", "RECURSIVE_STATEMENT", "close_program"),
                 List.of(),
-                asList("statement", "recursive_statement"),
+                asList("STATEMENT", "RECURSIVE_STATEMENT"),
                 List.of(),
-                asList("write"),
-                asList("read"),
-                asList("conditional"),
-                asList("loop"),
-                asList("declaration"),
-                asList("assignment"),
-                asList("write", "(", "any_expression", ")", ";"),
+                asList("WRITE"),
+                asList("READ"),
+                asList("CONDITIONAL"),
+                asList("LOOP"),
+                asList("DECLARATION"),
+                asList("ASSIGNMENT"),
+                asList("write", "(", "ANY_EXPRESSION", ")", ";"),
                 asList("read", "(", "variavel", ")", ";"),
-                asList("if", "else", "endif"),
-                asList("if", "(", "logical_expression", ")", "recursive_statement"),
-                asList("else", "recursive_statement"),
+                asList("IF", "ELSE", "endif"),
+                asList("if", "(", "LOGICAL_EXPRESSION", ")", "RECURSIVE_STATEMENT"),
+                asList("else", "RECURSIVE_STATEMENT"),
                 List.of(),
-                asList("while", "endloop"),
-                asList("loop", "(", "logical_expression", ")", "recursive_statement"),
+                asList("WHILE", "endloop"),
+                asList("loop", "(", "LOGICAL_EXPRESSION", ")", "RECURSIVE_STATEMENT"),
                 asList("var", "variavel", ";"),
-                asList("variavel", "=", "basic_expression", ";"),
-                asList("variavel", "basic_operator"),
-                asList("number", "basic_operator"),
-                asList("+", "basic_expression"),
-                asList("-", "basic_expression"),
-                asList("(", "basic_expression ", ")", "basic_operator"),
-                asList("+", "basic_expression"),
-                asList("-", "basic_expression"),
-                asList("*", "basic_expression"),
-                asList("/", "basic_expression"),
+                asList("variavel", "=", "BASIC_EXPRESSION", ";"),
+                asList("variavel", "BASIC_OPERATOR"),
+                asList("number", "BASIC_OPERATOR"),
+                asList("+", "BASIC_EXPRESSION"),
+                asList("-", "BASIC_EXPRESSION"),
+                asList("(", "BASIC_EXPRESSION ", ")", "BASIC_OPERATOR"),
+                asList("+", "BASIC_EXPRESSION"),
+                asList("-", "BASIC_EXPRESSION"),
+                asList("*", "BASIC_EXPRESSION"),
+                asList("/", "BASIC_EXPRESSION"),
                 List.of(),
                 asList("string_literal"),
                 asList("variavel"),
                 asList("number"),
-                asList("basic_expression"),
-                asList("string_expression"),
+                asList("BASIC_EXPRESSION"),
+                asList("STRING_EXPRESSION"),
                 asList("<"),
                 asList(">"),
-                asList("id_or_number", "logical_operator", "id_or_number")
+                asList("ID_OR_NUMBER", "LOGICAL_OPERATOR", "ID_OR_NUMBER")
         );
     }
 

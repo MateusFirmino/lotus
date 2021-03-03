@@ -4,8 +4,8 @@ lt_begin
 	lt_create resultado;
 	 
 	resultado = 1;
-	lt_show "escreva um numero";
-	lt_read num;
+	lt_show ("escreva um numero");
+	lt_read (num);
 
 	lt_while (fat < num)
 
@@ -13,6 +13,6 @@ lt_begin
 		resultado = result * fat;
 	lt_endwhile
 	
-	lt_show resultado;
+	lt_show ("resultado");
 
 lt_exit

@@ -126,7 +126,7 @@ public class Tokenizer {
                     } while (!line.get(++i).equals("\"")); //enquanto o proximo lexema for diferente de fecha aspas
 
                     string.append('"');
-                    listOfTokens.add(new TokenBox("string", string.toString(), lineCounter, columnCounter));
+                    listOfTokens.add(new TokenBox("string_literal", string.toString(), lineCounter, columnCounter));
                     columnCounter += string.length();
 
                 } else { // caso seja  um lexema que não se encaixa na gramatica

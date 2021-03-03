@@ -19,7 +19,7 @@ public class Sintatico {
     this.pilha = new Stack<>();// inicia a pilha
     // add $ e lotus para no final mostrar que o processo deu certo
     pilha.push("$");
-    pilha.push("lotus");
+    pilha.push("LOTUS");
   }
 
   public void analiseSintatico() {
