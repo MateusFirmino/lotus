@@ -8,8 +8,8 @@ lt_begin
 	lt_show ("insira a quantidade de notas do aluno:");
 	lt_read (numNota);
 	aux = numNota;
-	
-	lt_while (aux > 0) 
+
+	lt_while (aux > 0)
 		lt_show ("insira uma nota:");
 		lt_read (nota);
 

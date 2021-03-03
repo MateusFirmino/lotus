@@ -17,9 +17,10 @@ public class Main {
         new Flags().verificaTk(args);
         String path = new Flags().validatePath(args);
         var listaDeTokens = new Tokenizer().splitTk(new Arquivo().lerAquivo(path));
-        System.out.println("Analise léxica concluida");
+        System.out.println("Analise Léxica Concluida\n");
 
         new Sintatico(listaDeTokens).analiseSintatico();
+        System.out.println("Analise Sintática Concluida\n");
 
 //        new Sintatico(listaDeTokens).analiseSintatico();
 //        var semantico = new Semantico(listaDeTokens);

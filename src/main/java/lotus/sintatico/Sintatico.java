@@ -1,5 +1,6 @@
 package lotus.sintatico;
 
+import lotus.flags.Flag;
 import lotus.lexico.TokenBox;
 import lotus.lexico.Tokenizer;
 
@@ -50,12 +51,12 @@ public class Sintatico {
       erro(topo, tk, line, column);
     }
     var regraDeProducao = new LinkedList<>(getRegrasProducao().get(indice));
-    log((!isTerminal(topo) ? "nao terminal \"" : "token \"") + topo + "\" foi removido na pilha");
+    log((!isTerminal(topo) ? "Nao terminal \"" : "token \"") + topo + "\" foi removido na pilha");
     pilha.pop();
     while(!regraDeProducao.isEmpty()) {
       var regra = regraDeProducao.removeLast();
       log(
-        (!isTerminal(regra) ? "nao terminal \"" : "token \"") + regra + "\" foi colocada na pilha");
+        (!isTerminal(regra) ? "Nao terminal \"" : "token \"") + regra + "\" foi colocada na pilha");
       pilha.push(regra);
     }
   }
@@ -69,8 +70,8 @@ public class Sintatico {
       filaTk.removeFirst();
       pilha.pop();
       // fixme: alterar mensagem de log ESTÁ ERRADO
-      log("Token \"" + tk + "\" foi removido da lista de tokens");
-      log("Token \"" + tk + "\" foi removido da pilha de tokens");
+      log("Token \"" + tk + "\" foi removido da Lista de tokens");
+      log("Token \"" + topo + "\" foi removido da Pilha de tokens");
     }
     else {
       erro(topo, tk, line, column);
@@ -83,9 +84,9 @@ public class Sintatico {
   }
 
   private void log(String msg) {
-    // if (Flag.SINTATICO.getStatus()) {
+     if (Flag.SINTATICO.getStatus()) {
     System.out.println(msg);
-    // }
+     }
   }
 
   private void erro(String topo, String tk, Integer line, Integer column) {

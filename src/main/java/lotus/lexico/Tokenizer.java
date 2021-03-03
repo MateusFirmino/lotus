@@ -20,7 +20,7 @@ public class Tokenizer {
         palavraChave.put("lt_exit", "close_program");
         palavraChave.put("lt_if", "if");
         palavraChave.put("lt_else", "else");
-        palavraChave.put("lt_endif", "end_if");
+        palavraChave.put("lt_endif", "endif");
         palavraChave.put("lt_while", "loop");
         palavraChave.put("lt_endwhile", "endloop");
         palavraChave.put("lt_show", "write");
