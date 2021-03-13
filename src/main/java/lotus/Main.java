@@ -6,8 +6,8 @@ import lotus.flags.Flags;
 //import lotus.intermediario.Intermediario;
 import lotus.lexico.Tokenizer;
 import lotus.sintatico.Sintatico;
-//import lotus.semantico.Semantico;
-//import lotus.sintatico.Sintatico;
+import lotus.semantico.Semantico;
+import lotus.sintatico.Sintatico;
 
 import java.io.IOException;
 
@@ -21,6 +21,9 @@ public class Main {
 
         new Sintatico(listaDeTokens).analiseSintatico();
         System.out.println("Analise Sintática Concluida\n");
+
+        new Semantico(listaDeTokens).analise();
+        System.out.println("Analise Semantica concluida");
 
 //        new Sintatico(listaDeTokens).analiseSintatico();
 //        var semantico = new Semantico(listaDeTokens);

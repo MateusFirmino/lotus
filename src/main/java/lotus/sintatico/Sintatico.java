@@ -69,7 +69,6 @@ public class Sintatico {
     if(tkId.equals(topoId)) {
       filaTk.removeFirst();
       pilha.pop();
-      // fixme: alterar mensagem de log ESTÁ ERRADO
       log("Token \"" + tk + "\" foi removido da Lista de tokens");
       log("Token \"" + topo + "\" foi removido da Pilha de tokens");
     }

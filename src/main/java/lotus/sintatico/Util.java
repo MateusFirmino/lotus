@@ -19,8 +19,8 @@ public class Util {
         terminal.put("keyword", 2);
         terminal.put("number", 3);
         terminal.put("string_literal", 4);
-        terminal.put("init_program", 5);    // estava escrito errado
-        terminal.put("close_program", 6);   // estava escrito errado
+        terminal.put("init_program", 5);
+        terminal.put("close_program", 6);
         terminal.put("if", 7);
         terminal.put("else", 8);
         terminal.put("endif", 9);
