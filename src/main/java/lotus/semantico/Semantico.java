@@ -41,7 +41,7 @@ public class Semantico {
                         }
                     }
                 }
-            } else if (tk.getToken().equals("variavel")) { //verifica se é um id
+            } else if (tk.getToken().equals("variavel")) { //verifica se é um variavel
                 if (!declarados.containsKey(tk.getLexeme())) {
                     erro("variavel " + tk.getLexeme() + " nao foi declarada", tk.getLine(), tk.getColumn());
                 }
@@ -75,6 +75,10 @@ public class Semantico {
                     }
                     log("variavel " + tk.getLexeme() + " recebeu valor: " + buffer.toString());
                 }
+            } else if (tk.getToken().equals("read")) {
+                var tkProximo = tokens.get(i + 2);
+                // log("entrou no read " + tkProximo);
+                declarados.put(tkProximo.getLexeme(), true);
             }
             i++;
         }
@@ -82,7 +86,7 @@ public class Semantico {
 
 
     private void log(String msg) {
-        if (Flag.SEMANTICO.getStatus()) {
+        if (Flag.SEMANTICO.getStatus() || Flag.TODOS.getStatus()) {
             System.out.println(msg);
         }
     }

@@ -1,7 +1,5 @@
 package lotus.arquivo;
 
-import lotus.Main;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,4 +21,17 @@ public class Arquivo {
         }
         return codigo;
     }
+
+    public void criaArq(String codigo) throws IOException {
+
+        File file = new File("C:\\Users\\NUCK\\Documents\\Compiladores\\Lotus\\teste.asm");
+        file.createNewFile();
+
+        FileWriter fw = new FileWriter(file.getAbsolutePath());
+        var bw = new BufferedWriter(fw);
+
+        bw.write(codigo);
+        bw.close();
+    }
+
 }

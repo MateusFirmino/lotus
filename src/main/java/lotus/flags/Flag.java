@@ -4,7 +4,10 @@ public enum Flag {
 
     SEMANTICO("--smt", false),
     SINTATICO("--sin", false),
-    TOKENS("--tk", false);
+    TOKENS("--tk", false),
+    FINAL_CODE("--fnl", false),
+    TODOS("--tudo", false);
+
 
     private String value;
     private Boolean status;

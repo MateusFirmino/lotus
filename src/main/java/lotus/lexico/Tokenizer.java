@@ -6,12 +6,6 @@ import java.util.*;
 
 public class Tokenizer {
 
-    int lineCounter = 1;
-    int columnCounter = 1;
-
-    List<String> line = new ArrayList<>();
-    List<TokenBox> listOfTokens = new ArrayList<>();
-
     public final static Map<String, String> palavraChave;
 
     static {
@@ -27,6 +21,11 @@ public class Tokenizer {
         palavraChave.put("lt_read", "read");
         palavraChave.put("lt_create", "var");
     }
+
+    int lineCounter = 1;
+    int columnCounter = 1;
+    List<String> line = new ArrayList<>();
+    List<TokenBox> listOfTokens = new ArrayList<>();
 
     public static boolean isKeyword(String s) {
 
@@ -139,7 +138,7 @@ public class Tokenizer {
             columnCounter = 1;
         }
         listOfTokens.add(new TokenBox("$", "$", lineCounter, columnCounter));
-        if (Flag.TOKENS.getStatus()) {
+        if (Flag.TOKENS.getStatus() || Flag.TODOS.getStatus()) {
             for (TokenBox listOfToken : listOfTokens) { //printa a lista de tokens
                 System.out.println(listOfToken.toString());
             }

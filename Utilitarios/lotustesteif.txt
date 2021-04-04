@@ -1,0 +1,6 @@
+lt_begin
+lt_create num;
+lt_if(num>2)
+lt_else
+lt_endif
+lt_exit

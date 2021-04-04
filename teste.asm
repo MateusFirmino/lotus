@@ -1,0 +1,109 @@
+; +-------------------------------------------------+
+; | Assembly gerado utilizando Lotus Compiler v1.0  |
+; | Autor: Mateus Firmino                           |
+; | Data : 04/04/2021 19:32:00                      |
+; +-------------------------------------------------+
+
+section .data                                                                   ; Inicio da seção de constantes
+    fmtin: db "%d", 0x0                                                         ; Formatador de input
+    fmtout: db "%d", 0xA, 0x0                                                   ; Formatador de output
+
+    str_0: db "insira a quantidade de notas do aluno:", 0xA, 0x0                ; Declaração da string
+    str_1: db "insira uma nota:", 0xA, 0x0                                      ; Declaração da string
+    str_2: db "reprovado", 0xA, 0x0                                             ; Declaração da string
+    str_3: db "aprovado", 0xA, 0x0                                              ; Declaração da string
+
+section .bss                                                                    ; Inicio da seção de variáveis
+    aux: resd 1                                                                 ; Declaração da variável aux
+    somaNota: resd 1                                                            ; Declaração da variável somaNota
+    media: resd 1                                                               ; Declaração da variável media
+    numNota: resd 1                                                             ; Declaração da variável numNota
+    nota: resd 1                                                                ; Declaração da variável nota
+
+section .text                                                                   ; Inicio da seção do código
+    global main                                                                 ; Declaração do main
+    extern printf                                                               ; Importação do printf
+    extern scanf                                                                ; Importação do scanf
+
+main:
+    ; Preparação da pilha
+    push ebp
+    mov ebp, esp
+
+    ; Escrever a string str_0 na saída
+    push dword str_0
+    call printf
+    add esp, 4
+
+    ; Ler a entrada do usuário para a variável numNota
+    push numNota
+    push dword fmtin
+    call scanf
+    add esp, 8
+
+    mov eax, [numNota]
+    mov [aux], eax
+_L1:
+    mov eax, [aux]
+    cmp eax, 0
+    jle _L2
+
+    ; Escrever a string str_1 na saída
+    push dword str_1
+    call printf
+    add esp, 4
+
+    ; Ler a entrada do usuário para a variável nota
+    push nota
+    push dword fmtin
+    call scanf
+    add esp, 8
+
+    mov eax, [somaNota]
+    mov ebx, [nota]
+    add eax, ebx
+    mov [somaNota], eax
+    mov eax, [aux]
+    mov ebx, 1
+    sub eax, ebx
+    mov [aux], eax
+    jmp _L1
+_L2:
+    mov eax, [somaNota]
+    mov ebx, [numNota]
+    xor edx, edx
+    div ebx
+    mov [media], eax
+    mov eax, [media]
+    cmp eax, 6
+    jge _L3
+
+    ; Escrever a string str_2 na saída
+    push dword str_2
+    call printf
+    add esp, 4
+
+    ; Escrever a variável media na saída
+    push dword [media]
+    push dword fmtout
+    call printf
+    add esp, 8
+
+    jmp _L4
+_L3:
+    ; Escrever a string str_3 na saída
+    push dword str_3
+    call printf
+    add esp, 4
+
+    ; Escrever a variável media na saída
+    push dword [media]
+    push dword fmtout
+    call printf
+    add esp, 8
+
+_L4:
+    ; Término do programa
+    mov esp, ebp
+    pop ebp
+    ret

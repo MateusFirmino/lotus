@@ -1,7 +1,7 @@
 lt_begin
 	lt_create numNota;
 	lt_create media;
-	lt_create somanota;
+	lt_create somaNota;
 	lt_create nota;
 	lt_create aux;
 
@@ -9,18 +9,21 @@ lt_begin
 	lt_read (numNota);
 	aux = numNota;
 
-	lt_while (aux > 0)
+	lt_while (aux>0)
 		lt_show ("insira uma nota:");
 		lt_read (nota);
 
 		somaNota = somaNota + nota;
 		aux = aux - 1;
 	lt_endwhile
+
 	media = somaNota / numNota;
 
 	lt_if (media < 6 )
 		lt_show ("reprovado");
+
 	lt_else
 		lt_show	("aprovado");
+
 	lt_endif
 lt_exit
