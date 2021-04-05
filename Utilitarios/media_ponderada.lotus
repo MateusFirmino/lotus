@@ -18,7 +18,8 @@ lt_begin
 	lt_endwhile
 
 	media = somaNota / numNota;
-
+    lt_show("Sua nota e:");
+    lt_show(media);
 	lt_if (media < 6 )
 		lt_show ("reprovado");
 

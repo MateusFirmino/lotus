@@ -1,7 +1,7 @@
 ; +-------------------------------------------------+
 ; | Assembly gerado utilizando Lotus Compiler v1.0  |
 ; | Autor: Mateus Firmino                           |
-; | Data : 04/04/2021 19:32:00                      |
+; | Data : 04/04/2021 21:44:41                      |
 ; +-------------------------------------------------+
 
 section .data                                                                   ; Inicio da seção de constantes
@@ -10,8 +10,9 @@ section .data                                                                   
 
     str_0: db "insira a quantidade de notas do aluno:", 0xA, 0x0                ; Declaração da string
     str_1: db "insira uma nota:", 0xA, 0x0                                      ; Declaração da string
-    str_2: db "reprovado", 0xA, 0x0                                             ; Declaração da string
-    str_3: db "aprovado", 0xA, 0x0                                              ; Declaração da string
+    str_2: db "Sua nota e:", 0xA, 0x0                                           ; Declaração da string
+    str_3: db "reprovado", 0xA, 0x0                                             ; Declaração da string
+    str_4: db "aprovado", 0xA, 0x0                                              ; Declaração da string
 
 section .bss                                                                    ; Inicio da seção de variáveis
     aux: resd 1                                                                 ; Declaração da variável aux
@@ -74,10 +75,6 @@ _L2:
     xor edx, edx
     div ebx
     mov [media], eax
-    mov eax, [media]
-    cmp eax, 6
-    jge _L3
-
     ; Escrever a string str_2 na saída
     push dword str_2
     call printf
@@ -89,18 +86,21 @@ _L2:
     call printf
     add esp, 8
 
-    jmp _L4
-_L3:
+    mov eax, [media]
+    cmp eax, 6
+    jge _L3
+
     ; Escrever a string str_3 na saída
     push dword str_3
     call printf
     add esp, 4
 
-    ; Escrever a variável media na saída
-    push dword [media]
-    push dword fmtout
+    jmp _L4
+_L3:
+    ; Escrever a string str_4 na saída
+    push dword str_4
     call printf
-    add esp, 8
+    add esp, 4
 
 _L4:
     ; Término do programa

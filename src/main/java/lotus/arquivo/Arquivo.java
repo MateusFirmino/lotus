@@ -24,7 +24,7 @@ public class Arquivo {
 
     public void criaArq(String codigo) throws IOException {
 
-        File file = new File("C:\\Users\\NUCK\\Documents\\Compiladores\\Lotus\\teste.asm");
+        File file = new File("C:\\Users\\NUCK\\Documents\\Compiladores\\Lotus\\teste.lotus");
         file.createNewFile();
 
         FileWriter fw = new FileWriter(file.getAbsolutePath());
@@ -33,5 +33,4 @@ public class Arquivo {
         bw.write(codigo);
         bw.close();
     }
-
 }

@@ -24,7 +24,7 @@ public class Flags {
 
     public String validatePath(String[] cmd) {
         for (String arg : cmd) {
-            if (arg.contains(".txt")) return arg;
+            if (arg.contains(".lotus")) return arg;
         }
         throw new IllegalArgumentException("Arquivo não reconhecido");
     }

@@ -31,8 +31,8 @@ public class Main {
 
 
         var codigoFinal = new Final(listIntermed);
-        var asm= codigoFinal.build();
-        new Arquivo().criaArq(asm);
+        var lotus= codigoFinal.build();
+        new Arquivo().criaArq(lotus);
 
 
 //        new Sintatico(listaDeTokens).analiseSintatico();
